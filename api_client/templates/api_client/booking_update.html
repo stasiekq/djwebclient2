@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3498db;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+        }
+
+        form {
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+    <title>Update Booking</title>
+</head>
+<body>
+    <nav>
+        <a href="/booking_list/">Bookings List</a>
+        <a href="/booking_create/">Create Booking</a>
+    </nav>
+
+    <h2>Update Booking</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ booking.name }}" required>
+
+        <label for="room">Room:</label>
+        <input type="text" name="room" value="{{ booking.room }}" required>
+
+        <label for="details">Details:</label>
+        <textarea name="details" required>{{ booking.details }}</textarea>
+
+        <button type="submit">Update Booking</button>
+    </form>
+
+</body>
+</html>

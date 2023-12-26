@@ -8,6 +8,9 @@ API_URL = "https://stasiekq.pythonanywhere.com/"
 def index(request):
     return render(request, 'api_client/index.html')
 
+def index_pimp(request):
+    return render(request, 'api_client/index_pimp.html')
+
 
 def booking_delete(request, booking_id):
     response = requests.get(API_URL + 'api/' + str(booking_id) + '/')

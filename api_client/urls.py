@@ -9,4 +9,5 @@ urlpatterns = [
     path('booking_create/', booking_create, name='booking_create'),
     path('booking_delete/<int:booking_id>/', booking_delete, name='booking_delete'),
     path('booking_update/<int:booking_id>/', booking_update, name='booking_update'),
+    path('home_pimp', index_pimp, name='index_pimp'),
 ]

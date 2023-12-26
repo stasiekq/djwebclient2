@@ -3,8 +3,9 @@
   <head>
     {% load static %}
     <script src="{% static 'js/scripts.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Bookings list</title>
     <style>
-
       .dark-mode {
         background-color: #19222b;
         color: #fff;
@@ -62,6 +63,7 @@
         font-family: Arial, sans-serif;
         margin-top: 80px; /* Dostosuj wartość w zależności od wysokości belki górnej */
         margin-bottom: 60px;
+        background-color: #fff;
       }
       
       nav {
@@ -148,7 +150,6 @@
         cursor: not-allowed;
       }
     </style>
-    <title>Bookings list</title>
   </head>
   <body>
     <nav>
@@ -184,10 +185,10 @@
     </table>
 
     <footer>
-      <p>&copy; 2023 Twoja Firma</p>
+      <p>&copy; 2023 stasiekq</p>
       <div class="toggle-container">
         <input type="checkbox" id="dark-mode-toggle">
-        <label for="dark-mode-toggle">Dark Mode</label>
+        Dark Mode
       </div>
     </footer>
 

@@ -2,74 +2,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+        .dark-mode {
+        background-color: #19222b;
+        color: #fff;
+      }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #3498db;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+      body.dark-mode tr:hover {
+        background-color: #555; /* Dostosuj kolor tła do swoich preferencji */
+      }
 
-        nav a {
-            text-decoration: none;
+      body.dark-mode th {
+        background-color: #333; /* Dostosuj kolor nagłówka do swoich preferencji */
+        color: #fff; /* Kolor tekstu w nagłówku w trybie ciemnym */
+      }
+
+      .toggle-container {
+        display: flex;
+        align-items: center;
+        color: #fff;
+      }
+
+      #dark-mode-toggle {
+        appearance: none;
+        -webkit-appearance: none;
+        background-color: #61a9d9;
+        width: 60px;
+        height: 34px;
+        border-radius: 17px;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      #dark-mode-toggle:checked {
+        background-color: #257fbb;
+      }
+
+      #dark-mode-toggle::before {
+        content: '';
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        background-color: #fff;
+        border-radius: 50%;
+        top: 4px;
+        left: 4px;
+        transition: transform 0.3s ease;
+      }
+
+      #dark-mode-toggle:checked::before {
+        transform: translateX(26px);
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin-top: 80px; /* Dostosuj wartość w zależności od wysokości belki górnej */
+        margin-bottom: 60px;
+        background-color: #fff;
+        margin-left: 20px;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #3498db;
+        padding: 10px;
+        z-index: 1000;
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between; /* Aby umieścić elementy obok siebie */
+        align-items: center;
+        z-index: 1000; /* Ustawiamy z-index, aby stopka była na wierzchu innych elementów */
+      }
+      
+      nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 8px;
+        margin-right: 10px;
+        border-radius: 4px;
+      }
+      
+      nav a:hover {
+        background-color: #2980b9;
+      }
+      
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+      }
+      
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+      
+      a {
+        text-decoration: none;
+        color: #3498db;
+      }
+      
+      button {
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+      }
+
+        button.yes {
+            background-color: #2ecc71; /* Kolor zielony dla przycisku "Yes, delete" */
             color: #fff;
-            padding: 8px;
-            margin-right: 10px;
-            border-radius: 4px;
         }
 
-        nav a:hover {
-            background-color: #2980b9;
-        }
-
-        table {
-            width: 50%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            width: 30%;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        a {
-            text-decoration: none;
-            color: #3498db;
-        }
-
-        button {
-            padding: 10px;
-            margin-top: 10px;
-            cursor: pointer;
-            background-color: #3498db;
+        button.no {
+            background-color: #d44c4c; /* Kolor niebieski dla przycisku "No, go back" */
             color: #fff;
-            border: none;
-            border-radius: 4px;
+            margin-left: 10px;
         }
-
-        button:disabled {
-            background-color: #95a5a6;
-            cursor: not-allowed;
-        }
+      
+      button:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+      }
     </style>
     <title>Delete Booking</title>
 </head>
@@ -104,9 +193,18 @@
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Yes, delete</button>
-        <a href="/booking_list/"><button type="button">No, go back</button></a>
+        <button type="submit" class="yes">Yes, delete</button>
+        <a href="/booking_list/"><button type="button" class="no">No, go back</button></a>
     </form>
+
+
+    <footer>
+        <p>&copy; 2023 stasiekq</p>
+        <div class="toggle-container">
+          <input type="checkbox" id="dark-mode-toggle">
+          Dark Mode
+        </div>
+      </footer>
 
 </body>
 </html>

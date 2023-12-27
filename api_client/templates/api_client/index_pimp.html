@@ -3,7 +3,7 @@
 <head>
     {% load static %}
     <script src="{% static 'js/scripts.js' %}"></script>
-  
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,147 +20,7 @@
             color: #fff;
             background-image: url("{% static 'dark-bg.jpg' %}");
         }
-
-        header {
-            background-color: #3498db;
-            padding: 10px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            color: #fff;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #3498db;
-            padding: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #fff;
-            padding: 8px;
-            margin-right: 10px;
-            border-radius: 4px;
-        }
-
-        nav a:hover {
-            background-color: #2980b9;
-        }
-
-        section {
-            text-align: center;
-            margin: 20px;
-        }
-
-        button {
-            width: 150px;
-            padding: 10px;
-            margin: 10px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-        }
-
-        button:disabled {
-            background-color: #95a5a6;
-            cursor: not-allowed;
-        }
-
-        .main-content {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        footer {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background-color: #3498db;
-          color: #fff;
-          padding: 10px;
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 1000;
-        }
-
-        .empty-container {
-            height: 100%;
-            width: 10%;
-        }
-
-        .lang-switch {
-            cursor: pointer;
-            padding: 5px;
-            margin-right: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 30px;
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            color: #fff;
-        }
-
-        #dark-mode-toggle {
-            appearance: none;
-            -webkit-appearance: none;
-            background-color: #61a9d9;
-            width: 60px;
-            height: 34px;
-            border-radius: 17px;
-            position: relative;
-            outline: none;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        #dark-mode-toggle:checked {
-            background-color: #257fbb;
-        }
-
-        #dark-mode-toggle::before {
-            content: '';
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            background-color: #fff;
-            border-radius: 50%;
-            top: 4px;
-            left: 4px;
-            transition: transform 0.3s ease;
-        }
-
-        #dark-mode-toggle:checked::before {
-            transform: translateX(26px);
-        }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var translateElements = document.querySelectorAll('.translate');
-            var langButtons = document.querySelectorAll('.lang-switch');
-
-            langButtons.forEach(function (button) {
-                button.addEventListener('click', function () {
-                    var lang = this.dataset.lang;
-                    translateElements.forEach(function (element) {
-                        element.textContent = element.dataset['lang' + lang];
-                    });
-                });
-            });
-        });
-    </script>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
@@ -174,7 +34,7 @@
     <a href="/booking_create/" class="translate" data-langpl="Dodaj Rezerwację" data-langen="Create Booking">Create Booking</a>
     <a href="https://google.com/">Google</a>
     <a href="https://www.ismycomputeronfire.com/" class="translate" data-langpl="Status Serwera" data-langen="Server Status">Server Status</a>
-    <a href="/" class="translate" data-langpl="Nadpisz Rezerwację" data-langen="Update Booking">Update Booking</a>
+    <a href="/" class="translate" data-langpl="Zakt. Rezerwację" data-langen="Update Booking">Update Booking</a>
     <a href="/">Delete Booking</a>
 </nav>
 
@@ -185,22 +45,20 @@
 
     <button onclick="location.href='/booking_list/'" class="translate" data-langpl="Lista Rezerwacji" data-langen="Bookings List">Bookings List</button>
     <button onclick="location.href='/booking_create/'" class="translate" data-langpl="Dodaj Rezerwację" data-langen="Create Booking">Create Booking</button>
-    <button onclick="location.href='/update_booking/'" disabled class="translate" data-langpl="Zaktualizuj Rezerwację" data-langen="Update Booking">Update Booking</button>
+    <button onclick="location.href='/update_booking/'" disabled class="translate" data-langpl="Zakt. Rezerwację" data-langen="Update Booking">Update Booking</button>
     <button onclick="location.href='/delete_booking/'" disabled>Delete Booking</button>
 
     <p class="translate"  data-langpl="Zachęcamy do poruszania się po stronie i używania wszystkich funkcjonalności naszego systemu." data-langen="Feel free to navigate and use the features of our system.">Feel free to navigate and use the features of our system.</p>
     <button onclick="location.href='/'">Unpimp my website</button>
+
 </section>
 
 <footer>
 
     <p class="translate" data-langpl="&copy; 2023 stasiekq" data-langen="&copy; 2023 stasiekq">&copy; 2023 stasiekq</p>
 
-    <div class="empty-container">
-        <button class="lang-switch" data-lang="pl">PL</button>
-        <button class="lang-switch" data-lang="en">EN</button>
-
-    </div>
+    <button class="lang-switch" data-lang="pl">PL</button>
+    <button class="lang-switch" data-lang="en">EN</button>
 
     <div class="toggle-container">
         <p class="translate" data-langpl="Tryb ciemny" data-langen="Dark Mode">Dark Mode</p>

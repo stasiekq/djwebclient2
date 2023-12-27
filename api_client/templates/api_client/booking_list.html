@@ -1,198 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     {% load static %}
     <script src="{% static 'js/scripts.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <title>Bookings list</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style-list.css' %}">
+    <title class="translate" data-langpl="Lista Rezerwacji" data-langen="Bookings List">Bookings List</title>
     <style>
-      .dark-mode {
-        background-color: #19222b;
-        color: #fff;
-      }
-
-      body.dark-mode tr:hover {
-        background-color: #555;
-      }
-
-      body.dark-mode th {
-        background-color: #333;
-        color: #fff;
-      }
-
-      .toggle-container {
-        display: flex;
-        align-items: center;
-        color: #fff;
-      }
-
-      #dark-mode-toggle {
-        appearance: none;
-        -webkit-appearance: none;
-        background-color: #61a9d9;
-        width: 60px;
-        height: 34px;
-        border-radius: 17px;
-        position: relative;
-        outline: none;
-        cursor: pointer;
-        margin-right: 10px;
-      }
-
-      #dark-mode-toggle:checked {
-        background-color: #257fbb;
-      }
-
-      #dark-mode-toggle::before {
-        content: '';
-        position: absolute;
-        width: 26px;
-        height: 26px;
-        background-color: #fff;
-        border-radius: 50%;
-        top: 4px;
-        left: 4px;
-        transition: transform 0.3s ease;
-      }
-
-      #dark-mode-toggle:checked::before {
-        transform: translateX(26px);
-      }
-
-      body {
-        font-family: Arial, sans-serif;
-        margin-top: 80px; /* Dostosuj wartość w zależności od wysokości belki górnej */
-        margin-bottom: 60px;
-        background-color: #fff;
-        transition: background-color 0.5s, color 0.5s, background-image 0.5s;
-      }
       
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #3498db;
-        padding: 10px;
-        z-index: 1000;
-      }
-
-      footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #3498db;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        display: flex;
-        justify-content: space-between; /* Aby umieścić elementy obok siebie */
-        align-items: center;
-        z-index: 1000; /* Ustawiamy z-index, aby stopka była na wierzchu innych elementów */
-      }
-      
-      nav a {
-        text-decoration: none;
-        color: #fff;
-        padding: 8px;
-        margin-right: 10px;
-        border-radius: 4px;
-      }
-      
-      nav a:hover {
-        background-color: #2980b9;
-      }
-      
-      table {
-        width: 98%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        margin-left: auto;  
-        margin-right: auto;
-      }
-      
-      th,
-      td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-      
-      th {
-        background-color: #f2f2f2;
-        color: #333;
-      }
-      
-      tr:hover {
-        background-color: #f5f5f5;
-      }
-      
-      a {
-        text-decoration: none;
-        color: #3498db;
-      }
-      
-      button {
-        padding: 10px;
-        margin-top: 10px;
-        cursor: pointer;
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-      }
-      
-      button:disabled {
-        background-color: #95a5a6;
-        cursor: not-allowed;
-      }
     </style>
-  </head>
-  <body>
-    <nav>
-      <a href="/booking_list/">Bookings List</a>
-      <a href="/booking_create/">Create Booking</a>
-      <a href="https://google.com/">Google</a>
-      <a href="https://www.ismycomputeronfire.com/">Server Status</a>
-      <a href="/home_pimp">Home (pimp)</a>
-      <a href="/">Home</a>
-      
+</head>
 
+<body>
+    <nav>
+        <a href="/booking_list/" class="translate" data-langpl="Lista Rezerwacji" data-langen="Bookings List">Bookings List</a>
+        <a href="/booking_create/" class="translate" data-langpl="Dodaj Rezerwację" data-langen="Create Booking">Create Booking</a>
+        <a href="https://google.com/" class="translate" data-langpl="Google" data-langen="Google">Google</a>
+        <a href="https://www.ismycomputeronfire.com/" class="translate" data-langpl="Status Serwera" data-langen="Server Status">Server Status</a>
+        <a href="/home_pimp" class="translate" data-langpl="Home (pimp)" data-langen="Home (pimp)">Home (pimp)</a>
+        <a href="/" class="translate" data-langpl="Home" data-langen="Home">Home</a>
     </nav>
 
-
     <table>
-      <tr>
-        <th>Name</th>
-        <th>Room</th>
-        <th>Details</th>
-        <th>Actions</th>
-      </tr>
-      {% for booking in bookings %}
-        <tr>
-          <td>{{ booking.name }}</td>
-          <td>{{ booking.room }}</td>
-          <td>{{ booking.details }}</td>
-          <td>
-            <a href="/booking_details/{{ booking.id }}">View</a>
-            <a href="/booking_update/{{ booking.id }}">Update</a>
-            <a href="/booking_delete/{{ booking.id }}">Delete</a>
-          </td>
+        <tr class="sticky-header">
+            <th class="translate" data-langpl="Imię" data-langen="Name">Name</th>
+            <th class="translate" data-langpl="Pokój" data-langen="Room">Room</th>
+            <th class="translate" data-langpl="Szczegóły" data-langen="Details">Details</th>
+            <th class="translate" data-langpl="Akcje" data-langen="Actions">Actions</th>
         </tr>
-      {% endfor %}
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.name }}</td>
+                <td>{{ booking.room }}</td>
+                <td>{{ booking.details }}</td>
+                <td>
+                    <a href="/booking_details/{{ booking.id }}" class="translate" data-langpl="Szczegóły" data-langen="View">View</a>
+                    <a href="/booking_update/{{ booking.id }}" class="translate" data-langpl="Aktualizuj" data-langen="Update">Update</a>
+                    <a href="/booking_delete/{{ booking.id }}" class="translate" data-langpl="Usuń" data-langen="Delete">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
     </table>
 
     <footer>
-      <p>&copy; 2023 stasiekq</p>
-      <div class="toggle-container">
-        <input type="checkbox" id="dark-mode-toggle">
-        Dark Mode
-      </div>
+        <p class="translate" data-langpl="&copy; 2023 stasiekq" data-langen="&copy; 2023 stasiekq">&copy; 2023 stasiekq</p>
+      
+        <button class="lang-switch" data-lang="pl">PL</button>
+        <button class="lang-switch" data-lang="en">EN</button>
+      
+        <div class="toggle-container">
+            <p class="translate" data-langpl="Tryb ciemny" data-langen="Dark Mode">Dark Mode</p>
+            <input type="checkbox" id="dark-mode-toggle">
+        </div>
     </footer>
 
-  </body>
+</body>
+
 </html>

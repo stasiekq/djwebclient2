@@ -88,9 +88,23 @@
           padding: 10px;
           text-align: center;
           display: flex;
-          justify-content: space-between; /* Aby umieścić elementy obok siebie */
+          justify-content: center;
           align-items: center;
-          z-index: 1000; /* Ustawiamy z-index, aby stopka była na wierzchu innych elementów */
+          z-index: 1000;
+        }
+
+        .empty-container {
+            height: 100%;
+            width: 10%;
+        }
+
+        .lang-switch {
+            cursor: pointer;
+            padding: 5px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 30px;
         }
 
         .toggle-container {
@@ -132,42 +146,65 @@
             transform: translateX(26px);
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var translateElements = document.querySelectorAll('.translate');
+            var langButtons = document.querySelectorAll('.lang-switch');
+
+            langButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var lang = this.dataset.lang;
+                    translateElements.forEach(function (element) {
+                        element.textContent = element.dataset['lang' + lang];
+                    });
+                });
+            });
+        });
+    </script>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
 <header>
-    <h1>Hotel Booking System</h1>
+    <h1 class="translate" data-langpl="System Rezerwacji Hoteli" data-langen="Hotel Booking System">Hotel Booking System</h1>
 </header>
 
 <nav>
-    <a href="/booking_list/">Bookings List</a>
-    <a href="/booking_create/">Create Booking</a>
+    <a href="/booking_list/" class="translate" data-langpl="Lista Rezerwacji" data-langen="Bookings List">Bookings List</a>
+    <a href="/booking_create/" class="translate" data-langpl="Dodaj Rezerwację" data-langen="Create Booking">Create Booking</a>
     <a href="https://google.com/">Google</a>
-    <a href="https://www.ismycomputeronfire.com/">Server Status</a>
-    <a href="/">Update Booking</a>
+    <a href="https://www.ismycomputeronfire.com/" class="translate" data-langpl="Status Serwera" data-langen="Server Status">Server Status</a>
+    <a href="/" class="translate" data-langpl="Nadpisz Rezerwację" data-langen="Update Booking">Update Booking</a>
     <a href="/">Delete Booking</a>
 </nav>
 
 <section class="main-content">
-    <p>Welcome to the Hotel Booking System. Explore the sections using the provided links.</p>
+    <p class="translate" data-langpl="Witaj w Systemie Rezerwacji Hoteli. Przeglądaj sekcje, korzystając z dostarczonych linków." data-langen="Welcome to the Hotel Booking System. Explore the sections using the provided links.">Welcome to the Hotel Booking System. Explore the sections using the provided links.</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Here are the available sections:</p>
+    <p class="translate" data-langpl="Oto dostępne sekcje:" data-langen="Here are the available sections:">Here are the available sections:</p>
 
-    <button onclick="location.href='/booking_list/'">Bookings List</button>
-    <button onclick="location.href='/booking_create/'">Create Booking</button>
-    <button onclick="location.href='/update_booking/'" disabled>Update Booking</button>
+    <button onclick="location.href='/booking_list/'" class="translate" data-langpl="Lista Rezerwacji" data-langen="Bookings List">Bookings List</button>
+    <button onclick="location.href='/booking_create/'" class="translate" data-langpl="Dodaj Rezerwację" data-langen="Create Booking">Create Booking</button>
+    <button onclick="location.href='/update_booking/'" disabled class="translate" data-langpl="Zaktualizuj Rezerwację" data-langen="Update Booking">Update Booking</button>
     <button onclick="location.href='/delete_booking/'" disabled>Delete Booking</button>
 
-    <p>Feel free to navigate and use the features of our system.</p>
+    <p class="translate"  data-langpl="Zachęcamy do poruszania się po stronie i używania wszystkich funkcjonalności naszego systemu." data-langen="Feel free to navigate and use the features of our system.">Feel free to navigate and use the features of our system.</p>
     <button onclick="location.href='/'">Unpimp my website</button>
 </section>
 
 <footer>
-    <p>&copy; 2023 stasiekq</p>
+
+    <p class="translate" data-langpl="&copy; 2023 stasiekq" data-langen="&copy; 2023 stasiekq">&copy; 2023 stasiekq</p>
+
+    <div class="empty-container">
+        <button class="lang-switch" data-lang="pl">PL</button>
+        <button class="lang-switch" data-lang="en">EN</button>
+
+    </div>
+
     <div class="toggle-container">
+        <p class="translate" data-langpl="Tryb ciemny" data-langen="Dark Mode">Dark Mode</p>
         <input type="checkbox" id="dark-mode-toggle">
-        Dark Mode
     </div>
 </footer>
 
